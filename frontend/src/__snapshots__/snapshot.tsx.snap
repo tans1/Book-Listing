@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<body>
+      <div>
+        <p
+          class=" text-black text-center font-bold text-4xl my-4"
+        >
+          Book Tracking Exercise
+        </p>
+        <nav
+          class="p-4"
+        >
+          <div
+            class="container mx-auto flex justify-between items-center"
+          >
+            <div
+              class="left-items"
+            >
+              <a
+                class="mr-5"
+                href="/"
+              >
+                <button
+                  class="  px-4 py-2 rounded focus:outline-none outline outline-1 hover:outline-red-600 hover:outline-2"
+                >
+                  Reading Track
+                </button>
+              </a>
+              <a
+                class="mr-5"
+                href="/books-catalog"
+              >
+                <button
+                  class="  px-4 py-2 rounded focus:outline-none outline outline-1 hover:outline-red-600 hover:outline-2"
+                >
+                  Books Catalog
+                </button>
+              </a>
+              <button
+                class="bg-blue-500  px-4 py-2 rounded focus:outline-none hover:bg-blue-600 text-white"
+              >
+                Add New Book
+              </button>
+            </div>
+          </div>
+        </nav>
+        <div
+          class="container mx-auto mt-8 flex justify-center items-center bg-white ml-16 h-[70vh] w-[90vw]"
+        >
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            <div
+              class="bg-[#caf0f8] p-4 rounded-md text-gray-800 min-w-[400px]"
+            >
+              <h2
+                class="text-lg font-semibold mb-4 text-center"
+              >
+                To Read
+              </h2>
+              <div
+                class="w-full h-full flex flex-col justify-center items-center p-2 md:p-5"
+              />
+            </div>
+            <div
+              class="bg-[#caf0f8] p-4 rounded-md text-gray-800 min-w-[400px]"
+            >
+              <h2
+                class="text-lg font-semibold mb-4  text-center"
+              >
+                Reading
+              </h2>
+              <div
+                class="w-full h-full flex flex-col justify-center items-center p-2 md:p-5"
+              />
+            </div>
+            <div
+              class="bg-[#caf0f8] p-4 rounded-md text-gray-800 min-w-[400px]"
+            >
+              <h2
+                class="text-lg font-semibold mb-4  text-center"
+              >
+                completed
+              </h2>
+              <div
+                class="w-full h-full flex flex-col justify-center items-center p-2 md:p-5"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+`

@@ -1,0 +1,45 @@
+from fastapi import APIRouter, HTTPException
+from repository.repo import BookRepository
+from schema.schema import BookCreate, BookUpdate
+from typing import List
+from model.book import Book  
+from config.db import SessionLocal
+
+router = APIRouter()
+def get_db():
+    db = SessionLocal()
+    return db
+book_repo = BookRepository(db_session=get_db())
+
+
+@router.get("/books", response_model=List[Book])
+def read_all_books():
+    return book_repo.get_books()
+
+@router.get("/books/{book_id}", response_model=Book)
+def read_book_endpoint(book_id: int):
+    book = book_repo.get_book(book_id=book_id)
+    if book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
+
+@router.post("/books", response_model= Book)
+def create_book_endpoint(book: BookCreate):
+    return book_repo.create_book(title = book.title, status = book.status)
+
+@router.put("/books/{book_id}", response_model=Book)
+def update_book_endpoint(book_id: int, book: BookUpdate):
+    updated_book = book_repo.update_book(book_id=book_id, title=book.title, status=book.status)
+    if updated_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return updated_book
+
+
+@router.delete("/books/{book_id}", response_model=dict)
+def delete_book_endpoint(book_id: int):
+    deleted_book = book_repo.delete_book(book_id=book_id)
+    if deleted_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return {"message": "Book deleted successfully"}
+
+
