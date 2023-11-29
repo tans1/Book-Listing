@@ -2,7 +2,7 @@ import { Book } from "../types/book_type";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-const BASE_URL = "http://127.0.0.1:8000/books";
+const BASE_URL = "http://localhost:8000/books";
 
 export async function getAll(): Promise<Book[]> {
   try {

@@ -1,30 +1,26 @@
 version: "3"
 
 services:
-  mysqldb:
-    image: mysql
-    container_name: mysqldb_container
-    ports:
-      - "3366:3306"
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=12345678
-      - MYSQL_DATABASE=books
   frontend:
     build:
       context: .
       dockerfile: ./frontend/Dockerfile
-    container_name: frontend_container
+    container_name: frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - local-net
   backend:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
-    container_name: backend_container
+    container_name: backend
     ports:
       - "8000:8000"
-    depends_on:
-      - mysqldb
+    command: sh -c "uvicorn main:app --reload --port=8000 --host=0.0.0.0"
+    networks:
+      - local-net
+networks:
+  local-net:
