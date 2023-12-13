@@ -74,3 +74,27 @@ export async function changeCategory(
     });
   }
 }
+
+export async function updateTitle(
+  id: number,
+  newTitle : string,
+  book: Book 
+) {
+  try {
+    await axios.put(`${BASE_URL}/${id}`, {
+      id: id,
+      title: newTitle,
+      status: book.status
+    });
+    toast.success("Updated successfully", {
+      icon: "✔",
+      duration: 3000
+    });
+  }
+  catch (error){
+    toast.error("Error occurred while editing data", {
+      icon: "❌",
+      duration: 3000
+    });
+  }
+}

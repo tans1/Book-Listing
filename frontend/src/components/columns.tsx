@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Book } from "../types/book_type";
 import useStore from "../zustand/books";
-import { changeCategory, deleteBook } from "../utils/api";
+import { changeCategory, deleteBook, updateTitle } from "../utils/api";
 
 type Prop = {
   data: Book[];
@@ -9,11 +9,18 @@ type Prop = {
 
 export default function BuildColumn({ data }: Prop) {
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
+  const [editable, setEditable] = useState<boolean>(false);
   const bookStore = useStore();
   const categories = ["to-read", "reading", "completed"];
 
   const handleDropdownClick = (index: number) => {
     setExpandedItem(expandedItem === index ? null : index);
+  };
+  const handleEdit = (event: any, id: number) => {
+    // newT;
+    const formData = new FormData(event.target);
+    console.log("the handle edit is called", formData.get("id"));
+    // updateTitle(item.id, newTitle, item);
   };
   const handleDelete = (item: Book, index: number) => {
     try {
@@ -47,7 +54,11 @@ export default function BuildColumn({ data }: Prop) {
           className="relative border border-gray-300 rounded p-4 mb-2 w-full bg-white text-gray-800">
           <div className="flex justify-between items-center">
             <span>{index + 1}</span>
-            <span className="mr-2">{item.title}</span>
+            <form onSubmit={(event) => handleEdit(event, item.id)}>
+              <input defaultValue={item.title} name={item.id.toString()} />
+              <input type="submit" />
+            </form>
+
             <div
               className="cursor-pointer"
               onClick={() => handleDropdownClick(index)}>
